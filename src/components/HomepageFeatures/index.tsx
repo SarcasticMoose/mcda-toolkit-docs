@@ -15,28 +15,25 @@ const FeatureList: FeatureItem[] = [
     Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+          No complex setup or learning curve—just import and go
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
+    title: 'Simple and Intuitive',
     Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+          Built with a fluent interface that makes setup fast and readable. Easily configure decision-making data with minimal code and maximum clarity
       </>
     ),
   },
   {
-    title: 'Powered by React',
+    title: 'Powered by .NET',
     Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+          Fully compatible with both .NET 6 and .NET Standard 2.0, ensuring support for a wide range of application
       </>
     ),
   },
