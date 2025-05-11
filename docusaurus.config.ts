@@ -35,7 +35,7 @@ const config: Config = {
           sidebarPath: './sidebars.ts',
       },
         theme: {
-          customCss: './src/css/custom.css',
+          customCss: ['./src/css/custom.css','./src/css/custom-footer.css'],
         },
       } satisfies Preset.Options,
     ],
@@ -76,6 +76,23 @@ const config: Config = {
             {
               label: 'GitHub',
               href: 'https://github.com/SarcasticMoose/mcda-toolkit',
+            },
+            {
+              label: 'Nuget',
+              href: 'https://www.nuget.org/packages/McdaToolkit',
+            },
+          ],
+        },
+        {
+          title: 'Contact',
+          items: [
+            {
+              label: "LinkedIn",
+              href: 'https://www.linkedin.com/in/jakub-tokarczyk/',
+            },
+            {
+              label: 'Email me',
+              href: 'mailto:jakub.tokarczyk00@outlook.com',
             },
           ],
         },
