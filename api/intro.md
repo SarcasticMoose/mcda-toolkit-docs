@@ -19,7 +19,7 @@ dotnet add package McdaToolkit
 
 :::info
 
-**.NET Standard 2.0** is also supported, check compatibility with your version in [docs](https://learn.microsoft.com/en-us/dotnet/standard/net-standard?tabs=net-standard-2-0)
+**.NET Standard 2.0** is also supported, check compatibility with your version in [docs](https://learn.microsoft.com/pl-pl/dotnet/standard/net-standard?tabs=net-standard-2-0)
 
 :::
 

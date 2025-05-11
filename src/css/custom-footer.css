@@ -1,0 +1,12 @@
+.footer {
+    text-align: center;
+    justify-content: center !important;
+}
+
+.footer__links {
+    justify-content: center !important;
+}
+
+.footer__copyright {
+    margin-top: 1rem;
+}
