@@ -1,0 +1,60 @@
+---
+sidebar_position: 1
+---
+
+# Input data
+
+## Structure
+
+In a multi-criteria decision-making (MCDM) system, input data is crucial for evaluating and selecting the best alternative. The input data is divided into three main components:
+
+### Decision Matrix
+
+The **decision matrix** (commonly denoted as $M$) contains numerical values that describe how each alternative performs under various criteria.
+
+* **Rows** represent **alternatives** (e.g., different options, projects, or solutions).
+* **Columns** represent **decision criteria** (e.g., cost, quality, execution time).
+
+#### Example:
+
+|               | Criterion 1 | Criterion 2 | Criterion 3 |
+| ------------- | ----------- | ----------- | ----------- |
+| Alternative A | 100         | 4.5         | 200         |
+| Alternative B | 80          | 3.8         | 250         |
+| Alternative C | 120         | 4.2         | 180         |
+
+
+### Weight Vector
+
+The **weight vector** (denoted as $W$) is a one-dimensional array of real numbers that defines the **relative importance of each criterion** in the decision-making process.
+
+* Each value in the weight vector corresponds to one criterion.
+* Weights are typically normalized (i.e., their sum equals 1), but this depends on the method used.
+
+#### Example:
+
+$$
+W = [0.4, 0.35, 0.25]
+$$
+
+
+### Criterion Type Vector
+
+The **criterion type vector** indicates the **nature of each criterion**, specifying whether the goal is to **maximize** (benefit) or **minimize** (cost) its value.
+
+* It is typically represented using:
+
+* **1** for **benefit** criteria (the higher, the better)
+* **-1** for **cost** criteria (the lower, the better)
+
+#### Example:
+
+$$
+T = [-1,\ 1,\ 1]
+$$
+
+This means:
+
+* Criterion 1 is a cost (to be minimized)
+* Criterion 2 is a benefit (to be maximized)
+* Criterion 3 is a benefit (to be maximized)
