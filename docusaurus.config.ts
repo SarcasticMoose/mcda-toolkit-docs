@@ -82,7 +82,7 @@ const config: Config = {
             },
             {
               label: 'Learn',
-              to: '/docs/category/learn',
+              to: '/docs/category/how-tos',
             },
           ],
         },
