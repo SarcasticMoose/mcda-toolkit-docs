@@ -1,0 +1,24 @@
+﻿---
+sidebar_position: 2
+---
+
+# Build data
+
+The ``DefaultDataProviderBuilder`` is a utility class designed to simplify the process of constructing and providing input data to the MCDA engine. 
+
+It serves as a builder-style interface for defining the core components required by most decision-making methods: the list of alternatives, criteria, weights, and the decision matrix.
+This builder allows you to fluently configure data step by step and ensures structural integrity — for example, verifying that the number of weights matches the number of criteria, or that each alternative has a full set of evaluation scores.
+
+Once configured, the builder produces a standardized DataProvider object, which can then be passed directly to MCDA method implementations.
+
+```csharp showLineNumbers
+var data = new DefaultDataProviderBuilder()
+    .AddWeights(weights)
+    .AddDecisionCriteria(types)
+    .AddDecisionMatrix(matrix)
+    .Build();
+```
+
+:::warning
+Each of this method have to be used, otherwise the ``IncorrectInputDataException`` will thrown
+:::

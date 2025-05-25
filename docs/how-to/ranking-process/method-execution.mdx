@@ -1,8 +1,10 @@
----
-sidebar_position: 2
+﻿---
+sidebar_position: 4
 ---
 
-# Creating method
+# Method execution
+
+## Preparing method 
 
 Each decision-making method requires a specific configuration setup and a distinct set of parameters.
 In the toolkit, these configurations are encapsulated in dedicated Options classes — one for each method.
@@ -23,8 +25,11 @@ This behavior does not throw an exception, but it may lead to unintended behavio
 
 
 To instantiate a specific multi-criteria decision-making (MCDM) method, use the ``MethodFactory`` class.
-This static factory provides a centralized way to create algorithm instances, based on define options.
 
+:::info
+The method instance after initialization will be immutable; however, the data passed into the method can be changed in each
+execution
+:::
 
 Example of Promethee2 initialization:
 ```csharp showLineNumbers
@@ -36,7 +41,26 @@ var method = MethodFactory.CreatePromethee2(
     })
 ```
 
-:::info
-The method instance after initialization will be immutable; however, the data passed into the method can be changed in each
-execution
-:::
+## Run method
+The Run method is the main entry point for executing an MCDA algorithm. 
+It takes a complete set of input data built using the DefaultDataProviderBuilder — and returns the result of the analysis - ranking for each alternative.
+
+```csharp showLineNumbers
+var result = method.Run(data);
+```
+
+The result of the calculation is returned as an object of type `Result<T>`, provided by the [LightResults](https://github.com/jscarle/LightResults) library.
+This structure not only contains the output data Value, but also encapsulates information about whether the operation failed or succeed.
+Before accessing the Value property of the result object, it is essential to verify that the operation completed successfully. 
+Attempting to access the value without this check may throw InvalidOperationException
+
+```csharp showLineNumbers
+if(result.IsFailed)
+{
+    return "error"
+}
+
+Ranking<T> ranking = result.Value;
+```
+
+Further details about ``Ranking<T>`` can be found on the following pages.
