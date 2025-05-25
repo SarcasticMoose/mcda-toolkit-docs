@@ -1,9 +1,11 @@
 name: Test deployment
 
 on:
+  workflow_dispatch:
   pull_request:
     branches:
       - main
+
 jobs:
   test-deploy:
     name: Test deployment
