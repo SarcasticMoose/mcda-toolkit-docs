@@ -10,8 +10,6 @@ const config: Config = {
   title: 'Mcda Toolkit',
   tagline: 'McdaToolkit',
   url: 'https://your-docusaurus-site.example.com',
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/mcda-toolkit-docs/',
   organizationName: 'SarcasticMoose', // Usually your GitHub org/user name.
   projectName: 'McdaToolkit', // Usually your repo name.
@@ -56,7 +54,7 @@ const config: Config = {
   themeConfig: {
     colorMode: {
       defaultMode: 'dark',
-      disableSwitch: false,
+      disableSwitch: true,
       respectPrefersColorScheme: true,
     },
     image: 'img/docusaurus-social-card.jpg',
@@ -86,8 +84,8 @@ const config: Config = {
               to: '/docs/category/get-started',
             },
             {
-              label: 'Learn',
-              to: '/docs/category/how-tos',
+              label: 'Usage',
+              to: '/docs/category/usage',
             },
           ],
         },
