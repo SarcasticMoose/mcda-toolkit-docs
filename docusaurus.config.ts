@@ -40,6 +40,18 @@ const config: Config = {
       } satisfies Preset.Options,
     ],
   ],
+  plugins: [
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'api',
+        path: 'api',                   // path to your custom folder
+        routeBasePath: 'api',          // this is the URL path
+        sidebarPath: require.resolve('./sidebar-api.js'), // optional sidebar file
+      },
+    ],
+    require.resolve('docusaurus-lunr-search')
+  ],
 
   stylesheets: [
     {
@@ -67,10 +79,11 @@ const config: Config = {
       items: [
         {
           type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
+          sidebarId: 'docsSidebar',
           position: 'left',
           label: 'Docs',
-        }
+        },
+        {to: 'api', label: 'Api', position: 'left'}
       ],
     },
     footer: {
