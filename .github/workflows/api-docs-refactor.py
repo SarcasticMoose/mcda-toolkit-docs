@@ -1,5 +1,6 @@
 import os
 import re
+import sys
 
 def replace_br_in_md_files(content):
     new_content = content.replace("<br>", "\n\n").replace("<br/>", "\n\n").replace("<br />", "\n\n")
