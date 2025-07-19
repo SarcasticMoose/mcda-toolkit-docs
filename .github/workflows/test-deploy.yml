@@ -31,6 +31,9 @@ jobs:
     name: Add api Docs
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
       - uses: actions/setup-dotnet@v3.4.2
       - name: Install dll to md
         run: dotnet tool install -g XMLDoc2Markdown
@@ -54,4 +57,11 @@ jobs:
           mkdir extract
           unzip -q mcdatoolkit.nupkg -d extract
           ls extract/lib
-          cp extract/lib/netstandard2.0/*.dll ./McdaToolkit.dll
+          cp extract/lib/netstandard2.0/McdaToolkit.dll .
+          cp extract/lib/netstandard2.0/McdaToolkit.xml .
+          
+      - name: Create markdown from .dll
+        run: xmldoc2md McdaToolkit.dll --output output --structure tree
+        
+      - name: Refactor markdown
+        run: python .github/workflows/api-docs-refactor.py
