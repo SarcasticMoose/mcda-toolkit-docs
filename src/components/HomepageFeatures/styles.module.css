@@ -108,49 +108,21 @@
 }
 
 .codeBlock {
-  background: #0d1117;
-  border: 1px solid rgba(255,255,255,0.08);
   border-radius: 12px;
   overflow: hidden;
-  position: relative;
   box-shadow:
     0 0 0 1px rgba(0,0,0,0.5),
-    0 24px 64px rgba(0,0,0,0.5),
-    inset 0 1px 0 rgba(255,255,255,0.05);
+    0 24px 64px rgba(0,0,0,0.5);
 }
 
-.codeBlock::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 32px;
-  background: rgba(255,255,255,0.03);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-}
-
-.codeBlock::after {
-  content: '● ● ●';
-  position: absolute;
-  top: 8px;
-  left: 14px;
-  font-size: 10px;
-  letter-spacing: 4px;
-  color: rgba(255,255,255,0.2);
+.codeBlock > div {
+  margin: 0 !important;
+  border-radius: 12px !important;
 }
 
 .codeBlock pre {
-  margin: 0;
-  padding: 2.5rem 2rem 2rem;
-  background: transparent;
-  font-size: 0.88rem;
-  line-height: 1.8;
-}
-
-.codeBlock code {
-  color: #e6edf3;
-  font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+  font-size: 0.88rem !important;
+  line-height: 1.8 !important;
 }
 
 @media (max-width: 996px) {

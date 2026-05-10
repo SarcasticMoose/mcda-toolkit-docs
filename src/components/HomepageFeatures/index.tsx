@@ -2,6 +2,7 @@ import type {ReactNode} from 'react';
 import clsx from 'clsx';
 import Heading from '@theme/Heading';
 import Link from '@docusaurus/Link';
+import CodeBlock from '@theme/CodeBlock';
 import styles from './styles.module.css';
 
 type FeatureItem = {
@@ -35,12 +36,20 @@ function Feature({title, description}: FeatureItem) {
   );
 }
 
-const codeExample = `var result = PipelineBuilder
-  .Create()
-  .AddImporter(CsvImporter.From("data.csv"))
-  .AddNormalization(NormalizationMethod.MinMax)
-  .Build()
-  .Execute();`;
+const codeExample = `new PipelineBuilder<double>()
+    .ConfigureExecution(o => o.Precision = 4)
+    .WithData(b => b
+        .WithMatrix(matrix)
+        .AddCriterion(c => c
+          .WithType(CriterionType.Benefit)
+          .WithWeight(0.5))
+        .AddCriterion(c => c
+          .WithType(CriterionType.Cost)
+          .WithWeight(0.5)))
+    .AddProcessingStep(new NormalizationStepBuilder<double>()
+        .WithMethod(NormalizationMethod.MinMax))
+    .Build()
+    .Execute(new Vikor<double>());`;
 
 export default function HomepageFeatures(): ReactNode {
   return (
@@ -65,12 +74,12 @@ export default function HomepageFeatures(): ReactNode {
               <p className={styles.codeSectionDesc}>
                 Define the process once. The pipeline handles data flow between every step — from raw input to a sorted ranking.
               </p>
-              <Link className="button button--primary" to="/docs/usage/pipeline">
+              <Link className="button button--primary" to="/docs/usage/pipeline/overview">
                 See Pipeline docs
               </Link>
             </div>
             <div className={styles.codeBlock}>
-              <pre><code>{codeExample}</code></pre>
+              <CodeBlock language="csharp">{codeExample}</CodeBlock>
             </div>
           </div>
         </div>

@@ -182,39 +182,53 @@
   display: table !important;
   width: 100% !important;
   overflow: visible !important;
-  border-radius: 8px;
-  border: 1px solid rgba(255,255,255,0.07);
+  border-collapse: collapse !important;
+  border: none !important;
+  background: transparent !important;
+  border-radius: 0 !important;
 }
 
-[data-theme='dark'] table {
-  border-collapse: collapse;
-  width: 100%;
-  border: none;
-}
 
 [data-theme='dark'] table th {
-  background: rgba(255,255,255,0.04);
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-  font-size: 0.75rem;
+  background: rgba(255,255,255,0.035) !important;
+  border: none !important;
+  border-bottom: 1px solid rgba(255,255,255,0.08) !important;
+  font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.07em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.45);
+  color: rgba(255,255,255,0.4);
   white-space: nowrap;
+  padding: 0.65rem 1.25rem;
 }
 
-[data-theme='dark'] table td,
-[data-theme='dark'] table th {
-  border: 1px solid rgba(255,255,255,0.06);
+[data-theme='dark'] table td {
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 1px solid rgba(255,255,255,0.05) !important;
   padding: 0.7rem 1.25rem;
+  color: rgba(255,255,255,0.82);
 }
 
-[data-theme='dark'] table tr:nth-child(even) td {
-  background: rgba(255,255,255,0.015);
+[data-theme='dark'] table tr:last-child td {
+  border-bottom: none !important;
 }
 
 [data-theme='dark'] table tr:hover td {
-  background: rgba(37,194,160,0.04);
+  background: rgba(37,194,160,0.04) !important;
+}
+
+/* ── Mermaid ── */
+[data-theme='dark'] .docusaurus-mermaid-container svg {
+  background: transparent !important;
+}
+
+[data-theme='dark'] .docusaurus-mermaid-container {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 10px;
+  padding: 1.5rem;
+  overflow-x: auto;
 }
 
 

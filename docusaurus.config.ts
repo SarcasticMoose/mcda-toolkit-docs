@@ -74,6 +74,24 @@ export default async function createConfig(): Promise<Config> {
     ],
 
     themeConfig: {
+      mermaid: {
+        theme: { light: 'dark', dark: 'dark' },
+        options: {
+          themeVariables: {
+            background: 'transparent',
+            primaryColor: '#1a2a25',
+            primaryTextColor: 'rgba(255,255,255,0.82)',
+            primaryBorderColor: 'rgba(37,194,160,0.4)',
+            lineColor: 'rgba(255,255,255,0.25)',
+            secondaryColor: '#0f1621',
+            tertiaryColor: '#0d1117',
+            clusterBkg: 'rgba(255,255,255,0.03)',
+            clusterBorder: 'rgba(255,255,255,0.08)',
+            edgeLabelBackground: '#0b0f14',
+            fontFamily: 'inherit',
+          },
+        },
+      },
       colorMode: {
         defaultMode: 'dark',
         disableSwitch: true,
