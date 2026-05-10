@@ -21,3 +21,97 @@
   align-items: center;
   justify-content: center;
 }
+
+.badges {
+  margin: 10px 0;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.badge {
+  margin-right: 8px;
+}
+
+.heroBanner {
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(
+      1200px 600px at 50% -20%,
+      rgba(0, 255, 200, 0.25),
+      transparent 60%
+    ),
+    radial-gradient(
+      800px 400px at 80% 0%,
+      rgba(0, 200, 255, 0.15),
+      transparent 60%
+    ),
+    #0b0f14;
+}
+
+/* dodatkowy glow layer */
+.heroBanner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    600px circle at 50% 30%,
+    rgba(0, 255, 180, 0.2),
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.heroBanner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 40%,
+    rgba(0, 0, 0, 0.6)
+  );
+  pointer-events: none;
+}
+
+.hero__title {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.hero__subtitle {
+  opacity: 0.8;
+}
+
+.heroBanner::before {
+  filter: blur(40px);
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  opacity: 0.8;
+  margin-top: 15px;
+}
+
+.badges {
+  margin: 10px 0;
+}
+
+.buttons {
+  margin-top: 25px;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.note {
+  margin-top: 25px;
+  opacity: 0.6;
+  font-size: 0.9rem;
+}

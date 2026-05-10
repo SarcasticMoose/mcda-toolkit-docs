@@ -20,7 +20,7 @@ The matrix is built as follows:
 - rows : alternatives
 - columns : decision criterion
 
-```csharp showLineNumbers
+```csharp
 double[,] matrix = 
 {
     { 120, 1500 }, 
@@ -32,7 +32,7 @@ double[,] matrix =
 
 The weights have to meet the assumption $ \sum_{i=1}^{n} w_i = 1 $ where $n$ is the number of criteria (i.e. the number of columns in the decision matrix).
 
-```csharp showLineNumbers
+```csharp
 double[] weights = [0.5,0.5]
 ```
 
@@ -43,7 +43,7 @@ They will represent as vector of $ \{ c_1, c2, \dots, cn \} \in [-1, 1] $, where
 * **1** for **benefit** criteria (the higher, the better)
 * **-1** for **cost** criteria (the lower, the better)
 
-```csharp showLineNumbers
+```csharp
 int[] criteriaTypes = [-1,-1]
 ```
 
@@ -55,7 +55,7 @@ It encapsulates the definition of:
 * associated weights,
 * the decision matrix containing performance scores for each alternative.
 
-```csharp showLineNumbers
+```csharp
 var data = new DataBuilder()
     .AddWeights(weights)
     .AddDecisionCriteria(types)

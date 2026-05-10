@@ -1,6 +1,7 @@
 import type {ReactNode} from 'react';
 import clsx from 'clsx';
 import Heading from '@theme/Heading';
+import Link from '@docusaurus/Link';
 import styles from './styles.module.css';
 
 type FeatureItem = {
@@ -10,54 +11,70 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Easy to Use',
-    description: (
-      <>
-          No complex setup or learning curve—just import and go
-      </>
-    ),
+    title: 'Pipeline-first',
+    description: 'Every stage of analysis — data loading, preprocessing, method execution — flows through a single pipeline. No manual wiring.',
   },
   {
-    title: 'Simple and Intuitive',
-    description: (
-      <>
-          Built with a fluent interface that makes setup fast and readable. Easily configure decision-making data with minimal code and maximum clarity
-      </>
-    ),
+    title: 'Composable steps',
+    description: 'Normalization, transformation, and importers are independent steps. Swap, reorder, or skip them without touching the rest.',
   },
   {
-    title: 'Powered by .NET',
-    description: (
-      <>
-          Fully compatible with both .NET 6 and .NET Standard 2.0, ensuring support for a wide range of application
-      </>
-    ),
+    title: 'Built for .NET',
+    description: 'Fluent builder API, immutable configurations, stateless execution. Fits naturally into any .NET 8+ project.',
   },
 ];
 
 function Feature({title, description}: FeatureItem) {
   return (
     <div className={clsx('col col--4')}>
-      <div className="text--center">
-      </div>
-      <div className="text--center padding-horiz--md">
-        <Heading as="h3">{title}</Heading>
-        <p>{description}</p>
+      <div className={styles.featureCard}>
+        <Heading as="h3" className={styles.featureTitle}>{title}</Heading>
+        <p className={styles.featureDesc}>{description}</p>
       </div>
     </div>
   );
 }
 
+const codeExample = `var result = PipelineBuilder
+  .Create()
+  .AddImporter(CsvImporter.From("data.csv"))
+  .AddNormalization(NormalizationMethod.MinMax)
+  .Build()
+  .Execute();`;
+
 export default function HomepageFeatures(): ReactNode {
   return (
-    <section className={styles.features}>
-      <div className="container">
-        <div className="row">
-          {FeatureList.map((props, idx) => (
-            <Feature key={idx} {...props} />
-          ))}
+    <>
+      <section className={styles.features}>
+        <div className="container">
+          <div className="row">
+            {FeatureList.map((props, idx) => (
+              <Feature key={idx} {...props} />
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <section className={styles.codeSection}>
+        <div className="container">
+          <div className={styles.codeSectionInner}>
+            <div className={styles.codeSectionText}>
+              <Heading as="h2" className={styles.codeSectionTitle}>
+                One pipeline.<br/>Full analysis.
+              </Heading>
+              <p className={styles.codeSectionDesc}>
+                Define the process once. The pipeline handles data flow between every step — from raw input to a sorted ranking.
+              </p>
+              <Link className="button button--primary" to="/docs/usage/pipeline">
+                See Pipeline docs
+              </Link>
+            </div>
+            <div className={styles.codeBlock}>
+              <pre><code>{codeExample}</code></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

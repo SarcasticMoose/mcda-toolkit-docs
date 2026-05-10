@@ -13,7 +13,7 @@ Missing values do not throw exceptions, but relying on defaults may lead to unin
 :::
 
 Example of **PROMETHEE2** initialization:
-```csharp showLineNumbers
+```csharp
 var method = Promethee2Builder
     .Create()
     .WithNormalizationMethod(NormalizationMethod.MinMax)

@@ -4,139 +4,141 @@ import type * as Preset from '@docusaurus/preset-classic';
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 
-// This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
+async function fetchLatestNugetVersion(packageId: string, fallback: string): Promise<string> {
+  try {
+    const res = await fetch(`https://api.nuget.org/v3-flatcontainer/${packageId.toLowerCase()}/index.json`);
+    const { versions } = await res.json() as { versions: string[] };
+    return versions.at(-1) ?? fallback;
+  } catch {
+    return fallback;
+  }
+}
 
-const config: Config = {
-  title: 'Mcda Toolkit',
-  tagline: 'McdaToolkit',
-  url: 'https://your-docusaurus-site.example.com',
-  baseUrl: '/mcda-toolkit-docs/',
-  organizationName: 'SarcasticMoose', // Usually your GitHub org/user name.
-  projectName: 'McdaToolkit', // Usually your repo name.
+export default async function createConfig(): Promise<Config> {
+  const toolkitVersion = await fetchLatestNugetVersion('McdaToolkit', '5.0.0-beta1');
 
-  onBrokenLinks: 'warn',
-  onBrokenMarkdownLinks: 'warn',
-
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
-  i18n: {
-    defaultLocale: 'en',
-    locales: ['en'],
-  },
-
-  presets: [
-    [
-      'classic',
-      {
-        docs: {
-          sidebarPath: './sidebars.ts',
-          remarkPlugins: [remarkMath],
-          rehypePlugins: [rehypeKatex],
-      },
-        theme: {
-          customCss: ['./src/css/custom.css','./src/css/custom-footer.css'],
-        },
-      } satisfies Preset.Options,
-    ],
-  ],
-  plugins: [
-    [
-      '@docusaurus/plugin-content-docs',
-      {
-        id: 'api',
-        path: 'api',                   // path to your custom folder
-        routeBasePath: 'api',          // this is the URL path
-        sidebarPath: require.resolve('./sidebar-api.js'), // optional sidebar file
-      },
-    ],
-    require.resolve('docusaurus-lunr-search')
-  ],
-
-  stylesheets: [
-    {
-      href: 'https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css',
-      type: 'text/css',
-      integrity:
-          'sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM',
-      crossorigin: 'anonymous',
+  return {
+    markdown: {
+      mermaid: true,
     },
-  ],
+    title: 'Mcda Toolkit',
+    tagline: 'McdaToolkit',
+    url: 'https://your-docusaurus-site.example.com',
+    baseUrl: '/mcda-toolkit-docs/',
+    organizationName: 'SarcasticMoose',
+    projectName: 'McdaToolkit',
 
-  themeConfig: {
-    colorMode: {
-      defaultMode: 'dark',
-      disableSwitch: true,
-      respectPrefersColorScheme: true,
+    onBrokenLinks: 'warn',
+    onBrokenMarkdownLinks: 'warn',
+
+    i18n: {
+      defaultLocale: 'en',
+      locales: ['en'],
     },
-    image: 'img/docusaurus-social-card.jpg',
-    navbar: {
-      title: 'McdaToolkit',
-      logo: {
-        alt: 'My Site Logo',
-        src: 'img/logo.png',
-      },
-      items: [
+
+    presets: [
+      [
+        'classic',
         {
-          type: 'docSidebar',
-          sidebarId: 'docsSidebar',
-          position: 'left',
-          label: 'Docs',
-        },
-        {to: 'api', label: 'Api', position: 'left'}
+          docs: {
+            sidebarPath: './sidebars.ts',
+            remarkPlugins: [remarkMath],
+            rehypePlugins: [rehypeKatex],
+          },
+          theme: {
+            customCss: ['./src/css/custom.css','./src/css/custom-footer.css'],
+          },
+        } satisfies Preset.Options,
       ],
-    },
-    footer: {
-      style: 'dark',
-      links: [
+    ],
+    plugins: [
+      [
+        '@docusaurus/plugin-content-docs',
         {
-          title: 'Docs',
-          items: [
-            {
-              label: 'Get started',
-              to: '/docs/category/get-started',
-            },
-            {
-              label: 'Usage',
-              to: '/docs/category/usage',
-            },
-          ],
-        },
-        {
-          title: 'More',
-          items: [
-            {
-              label: 'GitHub',
-              href: 'https://github.com/SarcasticMoose/mcda-toolkit',
-            },
-            {
-              label: 'Nuget',
-              href: 'https://www.nuget.org/packages/McdaToolkit',
-            },
-          ],
-        },
-        {
-          title: 'Contact',
-          items: [
-            {
-              label: "LinkedIn",
-              href: 'https://www.linkedin.com/in/jakub-tokarczyk/',
-            },
-            {
-              label: 'Email me',
-              href: 'mailto:jakub.tokarczyk00@outlook.com',
-            },
-          ],
+          id: 'api',
+          path: 'api',
+          routeBasePath: 'api',
+          sidebarPath: require.resolve('./sidebar-api.js'),
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} McdaToolkit, Inc. Built with Docusaurus.`,
-    },
-    prism: {
-      theme: prismThemes.github,
-      darkTheme: prismThemes.dracula,
-      additionalLanguages: ['csharp']
-    },
-  } satisfies Preset.ThemeConfig,
-};
+      require.resolve('docusaurus-lunr-search')
+    ],
 
-export default config;
+    stylesheets: [
+      {
+        href: 'https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css',
+        type: 'text/css',
+        integrity: 'sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM',
+        crossorigin: 'anonymous',
+      },
+    ],
+
+    themeConfig: {
+      colorMode: {
+        defaultMode: 'dark',
+        disableSwitch: true,
+        respectPrefersColorScheme: true,
+      },
+      image: 'img/docusaurus-social-card.jpg',
+      navbar: {
+        title: 'McdaToolkit',
+        logo: {
+          alt: 'My Site Logo',
+          src: 'img/logo.png',
+        },
+        items: [
+          {
+            type: 'docSidebar',
+            sidebarId: 'docsSidebar',
+            position: 'left',
+            label: 'Docs',
+          },
+          {
+            type: 'docSidebar',
+            sidebarId: 'apiSidebar',
+            docsPluginId: 'api',
+            position: 'left',
+            label: 'API',
+          }
+        ],
+      },
+      footer: {
+        style: 'dark',
+        links: [
+          {
+            title: 'Docs',
+            items: [
+              { label: 'Get started', to: '/docs/category/get-started' },
+              { label: 'Usage', to: '/docs/category/usage' },
+            ],
+          },
+          {
+            title: 'More',
+            items: [
+              { label: 'GitHub', href: 'https://github.com/SarcasticMoose/mcda-toolkit' },
+              { label: 'Nuget', href: 'https://www.nuget.org/packages/McdaToolkit' },
+            ],
+          },
+          {
+            title: 'Contact',
+            items: [
+              { label: 'LinkedIn', href: 'https://www.linkedin.com/in/jakub-tokarczyk/' },
+              { label: 'Email me', href: 'mailto:jakub.tokarczyk00@outlook.com' },
+            ],
+          },
+        ],
+        copyright: `Copyright © ${new Date().getFullYear()} McdaToolkit, Inc. Built with Docusaurus.`,
+      },
+      prism: {
+        theme: prismThemes.github,
+        darkTheme: prismThemes.dracula,
+        additionalLanguages: ['csharp']
+      },
+    } satisfies Preset.ThemeConfig,
+    customFields: {
+      toolkitVersion,
+      dotnetVersion: '8',
+    },
+    themes: ['@docusaurus/theme-mermaid'],
+  };
+}
